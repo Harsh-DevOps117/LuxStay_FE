@@ -3,8 +3,8 @@ import type { ChangeEvent, FormEvent } from "react";
 import toast from "react-hot-toast";
 import api from "@/axios";
 
-// --- Keep only the FullScreenLoader import, assuming this is your desired component ---
-import FullScreenLoader from "../Components/Loader"; // Ensure this path is correct
+
+import FullScreenLoader from "../Components/Loader"; 
 
 import axios from "axios";
 import {
@@ -41,7 +41,7 @@ const HostPage: React.FC = () => {
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [validationError, setValidationError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Already defined, good!
+  const [isLoading, setIsLoading] = useState<boolean>(false); 
 
   const amenitiesOptions: AmenityOption[] = [
     { name: "Wi-Fi", icon: <FaWifi /> },
@@ -66,7 +66,7 @@ const HostPage: React.FC = () => {
     const files = event.target.files;
     if (files) {
       const newFiles = Array.from(files);
-      setValidationError(null); // Clear previous errors
+      setValidationError(null); 
 
       // Image validation
       if (newFiles.length === 0) {
@@ -81,7 +81,7 @@ const HostPage: React.FC = () => {
       }
 
       const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-      const maxSize = 5 * 1024 * 1024; // 5MB
+      const maxSize = 5 * 1024 * 1024; 
 
       for (const file of newFiles) {
         if (!allowedTypes.includes(file.type)) {
@@ -116,7 +116,7 @@ const HostPage: React.FC = () => {
       return;
     }
 
-    setIsLoading(true); // Start loading
+    setIsLoading(true); 
     setValidationError(null);
 
     const formData = new FormData();
@@ -136,10 +136,8 @@ const HostPage: React.FC = () => {
     });
 
     try {
-      await api.post("/host", formData); // uses baseURL from .env
+      await api.post("/host", formData);
       toast.success("Property added successfully!");
-
-      // Clear form only after successful post
       setPropertyTitle("");
       setLocation("");
       setPropertyType("");
@@ -164,8 +162,6 @@ const HostPage: React.FC = () => {
 
   return (
     <>
-      {/* --- RENDER THE FULL SCREEN LOADER HERE --- */}
-      {/* We are using FullScreenLoader, assuming that's the one you want */}
       <FullScreenLoader isLoading={isLoading} />
 
       <div
