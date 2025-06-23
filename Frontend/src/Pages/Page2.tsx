@@ -1,11 +1,5 @@
-// The file you provided is already clean and mostly production-ready.
-// Here's the updated version with the following small improvements:
-// ✅ Better type safety
-// ✅ A fallback image for broken image URLs
-// ✅ Minor tweaks to formatting and structure
-
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Optional: Can be removed if you only use `api`
+import axios from "axios"; 
 import api from "@/axios";
 import { motion } from "framer-motion";
 import { Carousel } from "react-responsive-carousel";
@@ -81,7 +75,7 @@ const Page2 = () => {
 
     try {
       const response = await api.post("/pay", {
-        amount: price, // or room.pricePerNight
+        amount: price,
       });
 
       const { orderId, amount, currency } = response.data;
@@ -98,9 +92,9 @@ const Page2 = () => {
           toast.success("Razorpay Payment Successful");
           console.log("Razorpay Payment Response:", response);
 
-          // Optional: Save payment to DB
+      
           await api.post("/booking", {
-            roomId, // from earlier
+            roomId, 
             amount,
             razorpay_order_id: orderId,
             razorpay_payment_id: response.razorpay_payment_id,
