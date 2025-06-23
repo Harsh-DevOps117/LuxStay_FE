@@ -3,34 +3,32 @@ import api from "@/axios";
 import {
   Send,
   Bot,
-  User as UserIcon, // Renamed to UserIcon to avoid conflict with User interface
+  User as UserIcon,
   MessageSquare,
   ChevronDown,
 } from "lucide-react";
 
-// Define the structure for a chat message
+
 interface ChatMessage {
   id: number;
   sender: "user" | "ai";
   text: string;
-  suggestions?: string[]; // Optional property for AI suggestions
+  suggestions?: string[]; 
 }
 
-// Define the User interface here to resolve "cant find User" error
+
 interface User {
   _id: string;
   name: string;
   email: string;
-  // Add any other user properties you might expect, e.g., role: string;
 }
 
 // Helper to get time-based greeting
 const getGreeting = () => {
   const hour = new Date().getHours();
-  // Using India's current time as per system prompt (adjust as needed for deployment locale)
-  if (hour >= 5 && hour < 12) return "Good morning"; // 5 AM to 11:59 AM
-  if (hour >= 12 && hour < 18) return "Good afternoon"; // 12 PM to 5:59 PM
-  return "Good evening"; // 6 PM to 4:59 AM
+  if (hour >= 5 && hour < 12) return "Good morning"; 
+  if (hour >= 12 && hour < 18) return "Good afternoon"; 
+  return "Good evening"; 
 };
 
 const TravellerBuddyAiPage: React.FC = () => {
@@ -43,16 +41,13 @@ const TravellerBuddyAiPage: React.FC = () => {
   const [showScrollButton, setShowScrollButton] = useState<boolean>(false);
   const [showWelcomeScreen, setShowWelcomeScreen] = useState<boolean>(true);
 
-  // --- Effects ---
-
-  // Initialize chat with AI greeting or load from local storage
   useEffect(() => {
     if (showWelcomeScreen) {
       setIsTyping(true);
       setTimeout(() => {
         setMessages([
           {
-            id: Date.now(), // Use Date.now() for unique ID
+            id: Date.now(),
             sender: "ai",
             text: initialGreeting,
             suggestions: [
@@ -64,11 +59,10 @@ const TravellerBuddyAiPage: React.FC = () => {
           },
         ]);
         setIsTyping(false);
-      }, 1500); // Slower initial typing for welcome message
+      }, 1500); 
     }
   }, [showWelcomeScreen, initialGreeting]);
 
-  // Auto-scroll to bottom on new messages or typing indicator change
   useEffect(() => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTo({
@@ -78,11 +72,10 @@ const TravellerBuddyAiPage: React.FC = () => {
     }
   }, [messages, isTyping]);
 
-  // Handle scroll to show/hide scroll-to-bottom button
+ 
   const handleScroll = useCallback(() => {
     if (chatHistoryRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = chatHistoryRef.current;
-      // Show button if scrolled up more than 200px from bottom
       setShowScrollButton(scrollHeight - scrollTop > clientHeight + 200);
     }
   }, []);
@@ -97,7 +90,6 @@ const TravellerBuddyAiPage: React.FC = () => {
     }
   }, [handleScroll]);
 
-  // --- AI Response Logic (Simulated - using raw data) ---
   const getAiResponseFromAPI = async (userMessage: string) => {
     try {
       const res = await api.post("/ask", { message: userMessage });
@@ -113,9 +105,9 @@ const TravellerBuddyAiPage: React.FC = () => {
     }
   };
 
-  // --- Handlers ---
+
   const handleSendMessage = useCallback(() => {
-    if (inputText.trim() === "" || isTyping) return; // Prevent sending empty messages or while AI is typing
+    if (inputText.trim() === "" || isTyping) return;
 
     const newUserMessage: ChatMessage = {
       id: Date.now(),
@@ -127,20 +119,20 @@ const TravellerBuddyAiPage: React.FC = () => {
     setInputText("");
     setIsTyping(true);
 
-    // Simulate AI response with a delay
+    
     setTimeout(() => {
       getAiResponseFromAPI(newUserMessage.text).then((replyText) => {
         const aiMessage: ChatMessage = {
           id: Date.now(),
           sender: "ai",
           text: replyText,
-          // Optional: you could add suggestions here dynamically
+          
         };
         setMessages((prev) => [...prev, aiMessage]);
         setIsTyping(false);
-      }); // Get AI response
-      // Hide typing indicator
-    }, Math.floor(Math.random() * 800) + 700); // Random delay between 0.7s and 1.5s
+      }); 
+
+    }, Math.floor(Math.random() * 800) + 700); 
   }, [inputText, isTyping]);
 
   const handleKeyPress = useCallback(
@@ -155,9 +147,7 @@ const TravellerBuddyAiPage: React.FC = () => {
   const handleSuggestionClick = useCallback(
     (suggestionText: string) => {
       setInputText(suggestionText);
-      // Automatically send the suggestion as a message
       setTimeout(() => {
-        // Small delay to allow input field to update first
         handleSendMessage();
       }, 50);
     },
@@ -176,8 +166,6 @@ const TravellerBuddyAiPage: React.FC = () => {
       });
     }
   }, []);
-
-  // --- Render ---
 
   if (showWelcomeScreen) {
     return (
@@ -199,7 +187,7 @@ const TravellerBuddyAiPage: React.FC = () => {
         >
           Start Chatting Now
         </button>
-        {/* Simple animations for welcome screen */}
+     
         <style>{`
           @keyframes fadeInDown {
             from {
@@ -242,7 +230,7 @@ const TravellerBuddyAiPage: React.FC = () => {
   }
 
   return (
-    // Increased max-w for a wider chat interface, added subtle gradient background
+   
     <div className="max-w-4xl mx-auto space-y-6 p-6 md:p-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl border border-gray-200 shadow-lg font-sans h-[calc(100vh-4rem)] flex flex-col">
       {/* Page Title */}
       <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100 flex items-center justify-between gap-4 transition-all duration-300 hover:shadow-lg">
