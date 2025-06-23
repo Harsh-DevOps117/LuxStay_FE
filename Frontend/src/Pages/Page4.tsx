@@ -3,17 +3,16 @@ import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
 import axios from "axios";
 import api from "@/axios";
-import toast from "react-hot-toast"; // Make sure react-hot-toast is installed
+import toast from "react-hot-toast"; 
 
 const ContactUsPage = () => {
-  // State for form fields
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false); // State for loading indicator
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -23,14 +22,12 @@ const ContactUsPage = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true); // Set loading state
+    setIsSubmitting(true); 
 
     try {
       const response = await api.post("/contact", formData);
 
       toast.success(response.data.message);
-
-      // Clear form fields after successful submission
       setFormData({
         name: "",
         email: "",
@@ -41,26 +38,21 @@ const ContactUsPage = () => {
       console.error("Error submitting contact form:", error);
 
       if (error.response) {
-        // Server-side error
         toast.error(
           error.response.data.message ||
             "Failed to send message. Please try again."
         );
       } else {
-        // Network or unexpected error
         toast.error("Failed to send message. Check your internet connection.");
       }
     } finally {
-      setIsSubmitting(false); // Reset loading state
+      setIsSubmitting(false); 
     }
   };
 
   const handleNewsletterSubmit = (e: FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
-    // You might want to get the email value from the input here
-    // For now, it just shows a toast.
-    toast("Subscribed!"); // Changed from toast.success to generic toast()
-    // In a real app, you'd send this email to a newsletter service
+    e.preventDefault(); 
+    toast("Subscribed!"); 
   };
 
   const reviews = [
@@ -291,11 +283,11 @@ const ContactUsPage = () => {
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name} // Controlled component
-                  onChange={handleChange} // Handle change
+                  value={formData.name} 
+                  onChange={handleChange} 
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 transition-all duration-200 text-gray-900"
                   placeholder="Your Full Name"
-                  required // Added required attribute for basic validation
+                  required 
                 />
               </div>
               <div>
@@ -309,11 +301,11 @@ const ContactUsPage = () => {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email} // Controlled component
-                  onChange={handleChange} // Handle change
+                  value={formData.email} 
+                  onChange={handleChange} 
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 transition-all duration-200 text-gray-900"
                   placeholder="Your Email Address"
-                  required // Added required attribute
+                  required 
                 />
               </div>
               <div>
@@ -326,12 +318,12 @@ const ContactUsPage = () => {
                 <input
                   type="text"
                   id="subject"
-                  name="subject" // Added name attribute
-                  value={formData.subject} // Controlled component
-                  onChange={handleChange} // Handle change
+                  name="subject" 
+                  value={formData.subject} 
+                  onChange={handleChange} 
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 transition-all duration-200 text-gray-900"
                   placeholder="Regarding your inquiry..."
-                  required // Added required attribute
+                  required 
                 />
               </div>
               <div>
@@ -345,17 +337,17 @@ const ContactUsPage = () => {
                   id="message"
                   name="message"
                   rows={4}
-                  value={formData.message} // Controlled component
-                  onChange={handleChange} // Handle change
+                  value={formData.message} 
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 transition-all duration-200 text-gray-900"
                   placeholder="Tell us how we can help you..."
-                  required // Added required attribute
+                  required
                 ></textarea>
               </div>
               <button
                 type="submit"
                 className="w-full bg-gray-900 text-white py-3 px-6 rounded-md font-semibold hover:bg-gray-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isSubmitting} // Disable button when submitting
+                disabled={isSubmitting} 
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
@@ -364,17 +356,13 @@ const ContactUsPage = () => {
         </div>
       </section>
       <hr className="my-12 border-gray-200" />{" "}
-      {/* Added a horizontal rule for separation */}
-      {/* Refined Black & White Footer */}
+     
       <footer className="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Subtle Motion Background (requires CSS definitions in your global stylesheet) */}
         <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-          {/* Ensure animate-gradient-shift and bg-repeating-linear-gradient are defined in your global CSS */}
           <div className="animate-gradient-shift w-full h-full bg-repeating-linear-gradient"></div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-          {/* Brand/About */}
           <div>
             <h3 className="text-3xl font-extrabold mb-4 text-white">LuxStay</h3>
             <p className="text-gray-400 text-sm mb-4">
@@ -479,8 +467,6 @@ const ContactUsPage = () => {
               </li>
             </ul>
           </div>
-
-          {/* Newsletter Signup */}
           <div className="md:col-span-2 lg:col-span-1">
             <h3 className="text-xl font-bold mb-4 text-white">Stay Updated</h3>
             <p className="text-gray-400 text-sm mb-4">
@@ -488,7 +474,6 @@ const ContactUsPage = () => {
             </p>
             <form className="flex" onSubmit={handleNewsletterSubmit}>
               {" "}
-              {/* Added onSubmit to newsletter form */}
               <input
                 type="email"
                 placeholder="Your email address"
