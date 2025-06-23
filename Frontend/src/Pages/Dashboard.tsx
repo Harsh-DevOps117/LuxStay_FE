@@ -22,7 +22,7 @@ const DashboardOverviewPage: React.FC = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const res = await api.get("/dashboard"); // ✅ baseURL + withCredentials already handled
+        const res = await api.get("/dashboard");
         console.log(res.data);
         setUser(res.data.user);
         setStats(res.data.dashboardStats);
