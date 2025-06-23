@@ -13,10 +13,10 @@ const AuthPage: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await loginUser(email, password); // loginUser already has withCredentials
+      const res = await loginUser(email, password); 
 
       toast.success(res.message || "Login successful");
-      navigate("/"); // Redirect to home page or dashboard
+      navigate("/"); 
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message || error.message || "Login failed"
