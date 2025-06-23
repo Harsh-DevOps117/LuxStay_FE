@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar5 from "@/Components/navbar-5"; // Assuming Navbar5 is designed for a dark/light theme already
+import Navbar5 from "@/Components/navbar-5"; 
 import { Link } from "react-scroll";
 import Page2 from "./Page2";
 import Page3 from "./Page3";
@@ -11,19 +11,10 @@ const Page1 = () => {
       className="min-h-screen min-w-screen bg-gradient-to-br from-gray-50 to-white flex flex-col items-center justify-start font-sans text-gray-900 overflow-x-hidden pt-12"
       id="home"
     >
-      {/* Navbar at the top - standard UX practice */}
       <Navbar5 />
-
-      {/* Main content container. 
-          Ensuring min-h to take up available space for vertical centering.
-          'lg:items-center' will vertically center both left and right columns.
-      */}
       <div className="max-w-screen-xl w-full px-6 lg:px-0 h-auto min-h-[calc(100vh-80px)] flex flex-col lg:flex-row items-center justify-center lg:justify-between py-8 lg:py-0">
-        {/* Left Section: Hero Content and Search - Now LEFT and VERTICALLY CENTERED */}
-        {/* Changed justify-center to justify-start and added pt-16 to move content up slightly for left-center positioning */}
         <div className="flex-1 min-h-[50vh] lg:min-h-[auto] mb-10 lg:mb-0 p-4 sm:p-6 lg:p-0 flex flex-col justify-start pt-16 lg:pt-8 items-start text-left z-10 xl:mb-[10rem]">
           <div className="heading">
-            {/* Heading text is naturally left-aligned due to parent. */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-7xl font-extrabold leading-tight tracking-tight text-gray-900">
               Inspiring
               <br />
@@ -31,14 +22,11 @@ const Page1 = () => {
               <br />
               to Lodge
             </h1>
-            {/* Paragraph text is naturally left-aligned. */}
             <p className="text-md sm:text-lg font-medium mt-3 text-gray-700 max-w-lg leading-relaxed">
               Create memorable travel moments by choosing a designer house with
               a warm ambiance as your accommodation.
             </p>
           </div>
-
-          {/* Search Bar Section - now also left-aligned */}
           <Link
             to="Page2"
             spy={true}
@@ -55,10 +43,7 @@ const Page1 = () => {
             </button>
           </Link>
         </div>
-
-        {/* Right Section: Aesthetic Block Arrangement */}
         <div className="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col gap-6 flex-shrink-0">
-          {/* Top Hero Image Card */}
           <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[380px] rounded-3xl overflow-hidden shadow-2xl group cursor-pointer transform transition-transform duration-500 hover:-translate-y-1">
             <img
               src="https://external-preview.redd.it/_IPMs180QDcnwnWOkNIhmgamF9pD1sJQLmo8IDOY-DQ.jpg?auto=webp&s=051c03c8e9c3b3040a21feb389ed1ff8412edd00"
@@ -98,8 +83,6 @@ const Page1 = () => {
               </button>
             </div>
           </div>
-
-          {/* Bottom Grid of Cards */}
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-gray-900 text-white p-4 rounded-2xl shadow-xl flex flex-col justify-between h-[120px] sm:h-[140px] md:h-[160px] transform transition-transform duration-300 hover:scale-[1.02] cursor-pointer">
               <h3 className="text-3xl sm:text-4xl font-extrabold">2,000+</h3>
