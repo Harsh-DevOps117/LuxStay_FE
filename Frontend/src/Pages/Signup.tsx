@@ -3,20 +3,19 @@ import type { ChangeEvent, FormEvent } from "react";
 import { FaEnvelope, FaLock, FaUser, FaGoogle } from "react-icons/fa";
 import signupUser from "@/axios_singup";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 const SignUpPage: React.FC = () => {
   const [fullName, setFullName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const res = await signupUser(fullName, email, password);
-      toast.success(res.message + " Redirecting to login page..."); // Update toast message
-      // Redirect to login page on successful signup
+      toast.success(res.message + " Redirecting to login page..."); 
       navigate("/login");
     } catch (error: any) {
       toast.error(
@@ -24,16 +23,6 @@ const SignUpPage: React.FC = () => {
       );
     }
   };
-
-  // const handleGoogleSignUp = () => {
-  //   console.log("Initiating Google Sign-Up...");
-  //   alert(
-  //     "Google Sign-Up functionality not implemented. This would redirect to Google OAuth."
-  //   );
-  //   // In a real application, this would typically involve redirecting the user
-  //   // to Google's authentication flow or using a service like Firebase Authentication.
-  // };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white text-gray-900 font-sans px-4">
       <div className="text-center bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 max-w-sm mx-auto w-full">
@@ -45,7 +34,6 @@ const SignUpPage: React.FC = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Full Name Input */}
           <div>
             <label htmlFor="fullName" className="sr-only">
               Full Name
@@ -66,7 +54,6 @@ const SignUpPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Email Input */}
           <div>
             <label htmlFor="email" className="sr-only">
               Email
@@ -87,7 +74,6 @@ const SignUpPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Password Input */}
           <div>
             <label htmlFor="password" className="sr-only">
               Password
@@ -108,7 +94,7 @@ const SignUpPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Sign Up Button */}
+
           <button
             type="submit"
             className="w-full bg-gray-900 text-white py-2.5 px-6 rounded-md font-semibold hover:bg-gray-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 text-base shadow-md"
@@ -116,26 +102,10 @@ const SignUpPage: React.FC = () => {
             Sign Up
           </button>
         </form>
-
-        {/* Separator */}
-        {/* <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="bg-white px-2 text-gray-500">
-              Or continue with
-            </span>
-          </div>
-        </div> */}
-
-        {/* Google Sign-Up Button */}
-
-        {/* Link to Login Page */}
         <p className="text-sm text-gray-600 mt-6">
           Already have an account?
           <a
-            href="/login" // Assuming your login page is at /login
+            href="/login"
             className="ml-1 font-semibold text-gray-900 hover:text-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
           >
             Log In
