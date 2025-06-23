@@ -33,7 +33,7 @@ const Navbar5 = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Function to check authentication status with the backend
+  
     const checkAuthStatus = async () => {
       try {
         const res = await api.get("/me");
@@ -56,22 +56,19 @@ const Navbar5 = () => {
       }
     };
 
-    // Initial check when the component mounts
+  
     checkAuthStatus();
 
-    // Set up a custom event listener for when a login is successful
-    // This allows other components (like your login page) to notify Navbar5
+   
     const handleLoginSuccess = () => {
-      checkAuthStatus(); // Re-run the auth check when login event is received
+      checkAuthStatus();
     };
 
     window.addEventListener("loginSuccess", handleLoginSuccess);
-
-    // Cleanup the event listener when the component unmounts
     return () => {
       window.removeEventListener("loginSuccess", handleLoginSuccess);
     };
-  }, []); // Empty dependency array means this effect runs once on mount and on unmount cleanup
+  }, []);
 
   const features = [
     {
@@ -92,8 +89,8 @@ const Navbar5 = () => {
 
       if (res.status === 200) {
         console.log("✅ Logged out successfully from the server.");
-        setIsLoggedIn(false); // Update auth state
-        navigate("/login"); // Redirect to login
+        setIsLoggedIn(false); 
+        navigate("/login"); 
       } else {
         console.error("⚠️ Logout failed:", res.statusText);
         setIsLoggedIn(false);
