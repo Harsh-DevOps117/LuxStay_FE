@@ -108,13 +108,13 @@ const Navbar5 = () => {
       <div className="m-auto container w-screen">
         <nav className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <img
+            {/* <img
               height={100}
               width={40}
               src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.luxstayventures.com%2F_next%2Fstatic%2Fmedia%2Fluxstay-logo-colored.acfc4370.svg&tbnid=fSPBro53iY26dM&vet=1&imgrefurl=https%3A%2F%2Fwww.luxstayventures.com%2F&docid=dzuypZ1jjc7UMM&w=744&h=800&hl=en-US&source=sh%2Fx%2Fim%2Fm5%2F4&kgs=505893aaa5ddb3bf"
               className="max-h-8"
               alt="Shadcn UI Navbar"
-            />
+            /> */}
             <span className="text-lg font-semibold tracking-tighter">
               LuxStay
             </span>
